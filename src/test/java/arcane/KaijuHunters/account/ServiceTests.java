@@ -37,4 +37,14 @@ public class ServiceTests {
 		when(repo.findOne(Mockito.any())).thenReturn(Optional.of(acc));
 		Assertions.assertFalse(service.login(dto));
 	}
+	
+	@Test
+	void signup(){
+		Account acc = new Account(1L, "gura", "a");
+		AccountDTO dto = new AccountDTO(1L, "gura", "a");
+		when(repo.save(Mockito.any())).thenReturn(acc);
+		Assertions.assertEquals(acc,service.create(dto));
+	}
+	
+
 }

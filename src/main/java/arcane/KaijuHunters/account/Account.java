@@ -20,6 +20,10 @@ public class Account {
 		 uname = string;
 		 pass = PasswordSecurity.encrypt(string2);
 	}
+	public Account(AccountDTO dto) {
+		 uname = dto.uname;
+		 pass = PasswordSecurity.encrypt(dto.pass);
+	}
 	public Long getId() {
 		return id;
 	}

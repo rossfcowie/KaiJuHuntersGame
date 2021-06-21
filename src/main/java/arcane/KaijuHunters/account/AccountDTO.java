@@ -13,6 +13,11 @@ public class AccountDTO {
 		 uname = string;
 		 pass = string2;
 	}
+	public AccountDTO(Account a) {
+		 id = a.id;
+		 uname = a.uname;
+		 pass = a.pass;
+	}
 	public Long getId() {
 		return id;
 	}

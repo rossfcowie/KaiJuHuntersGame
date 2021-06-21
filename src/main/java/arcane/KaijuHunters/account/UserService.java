@@ -18,9 +18,13 @@ public class UserService {
 		this.repo = repo;
 	}
 	
-	public AccountDTO create(AccountDTO dto) {
-		// TODO Auto-generated method stub
-		return null;
+	public Account create(AccountDTO dto) {
+		return repo.save(new Account(dto));
+	}
+
+	private AccountDTO map(Account a) {
+		
+		return new AccountDTO(a);
 	}
 
 	public boolean login(AccountDTO userDTO) {
