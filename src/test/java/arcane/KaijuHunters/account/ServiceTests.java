@@ -46,5 +46,24 @@ public class ServiceTests {
 		Assertions.assertEquals(acc,service.create(dto));
 	}
 	
-
+	@Test
+	void read(){
+		Account acc = new Account(1L, "gura", "a");
+		when(repo.findOne(Mockito.any())).thenReturn(Optional.of(acc));
+		Assertions.assertEquals(acc,service.read("gura"));
+	}
+	
+	@Test
+	void cookiecheck(){
+		Account acc = new Account(1L, "gura", "a");
+		when(repo.findOne(Mockito.any())).thenReturn(Optional.of(acc));
+		Assertions.assertTrue(service.cookiecheck("gura", 50219477));
+	}
+	
+	@Test
+	void cookieCheckBad(){
+		Account acc = new Account(1L, "gura", "a");
+		when(repo.findOne(Mockito.any())).thenReturn(Optional.of(acc));
+		Assertions.assertFalse(service.cookiecheck("gura", 50219478));
+	}
 }

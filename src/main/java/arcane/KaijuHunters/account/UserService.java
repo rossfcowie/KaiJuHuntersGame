@@ -22,21 +22,20 @@ public class UserService {
 		return repo.save(new Account(dto));
 	}
 
-	private AccountDTO map(Account a) {
-		
-		return new AccountDTO(a);
-	}
-
 	public boolean login(AccountDTO userDTO) {
 		Account a = repo.findOne(Example.of(new Account(userDTO.getUname()))).get();
-		System.out.println(a);
-		System.out.println(userDTO);
 		return a.checkPassword(userDTO.getPassword());
 	}
 
-	public AccountDTO read(String uname) {
-		// TODO Auto-generated method stub
-		return null;
+	public Account read(String uname) {
+		Account a = repo.findOne(Example.of(new Account(uname))).get();
+		return a;
 	}
 
+	public boolean cookiecheck(String uname, int hash) {
+		Account a = repo.findOne(Example.of(new Account(uname))).get();
+		System.out.println(a);
+		System.out.println(a.hashCode());
+		return hash == a.hashCode();
+	}
 }
