@@ -1,6 +1,7 @@
 package arcane.KaijuHunters.Monsters;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.persistence.Entity;
@@ -82,7 +83,7 @@ public class Monster {
 	
 
 	public Monster(Long id, String name, String image, Long hp, Integer mp, Integer atk, Integer def,
-			Integer mat, Integer mdf, Integer luk, Integer agi, ArrayList<Integer> drops, ArrayList<Integer> attacks) {
+			Integer mat, Integer mdf, Integer luk, Integer agi, List<Integer> drops, List<Integer> attacks) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -95,8 +96,8 @@ public class Monster {
 		this.mdf = mdf;
 		this.luk = luk;
 		this.agi = agi;
-		this.drops = drops;
-		this.attacks = attacks;
+		this.drops = (ArrayList<Integer>) drops;
+		this.attacks = (ArrayList<Integer>) attacks;
 	}
 
 
