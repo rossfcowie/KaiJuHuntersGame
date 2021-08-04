@@ -9,8 +9,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,24 +30,24 @@ public class AccountController {
 	}
 
 	@PostMapping("/signup")
-	public ResponseEntity<AccountDTO> createUser(@Validated @RequestBody AccountDTO dto)
+	public ResponseEntity<Account> createUser(@Validated @RequestBody AccountDTO dto)
 			throws NoSuchAlgorithmException, InvalidKeySpecException {
-		AccountDTO newUser = null;
+		Account newUser = null;
 
 		try {
 			newUser = userService.create(dto);
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.IM_USED);
 		}
-		return new ResponseEntity<AccountDTO>(newUser, HttpStatus.CREATED);
+		return new ResponseEntity<Account>(newUser, HttpStatus.CREATED);
 	}
 
-	@PostMapping("/login")
+	@GetMapping("/login")
 	public ResponseEntity<String> loginAsUser(@Validated @RequestBody AccountDTO userDTO) {
-		AccountDTO user = userService.read(userDTO.getUname());
 		if (userService.login(userDTO)) {
+			Account u = userService.read(userDTO.uname);
 			HttpHeaders headers = new HttpHeaders();
-			return new ResponseEntity<>(String.valueOf(user.getUname()), headers, HttpStatus.OK);
+			return new ResponseEntity<>(String.valueOf(u.uname + ":" +u.hashCode()), headers, HttpStatus.OK);
 			
 		}
 
@@ -53,4 +55,19 @@ public class AccountController {
 
 	}
 
+	@GetMapping("/bypass")
+	public ResponseEntity<Boolean> cookieAsUser(@RequestHeader("key") String userKey) {
+		String uname[]  = userKey.split(":");
+		System.out.println(uname[0]);
+		System.out.println(uname[1]);
+		if (userService.cookiecheck(uname[0],Integer.valueOf(uname[1]))) {
+			HttpHeaders headers = new HttpHeaders();
+			return new ResponseEntity<>(true, headers, HttpStatus.OK);
+			
+		}
+
+		return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+
+	}
+	
 }

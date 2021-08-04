@@ -15,6 +15,10 @@ public class Account {
 	public Account(String uname2) {
 		uname = uname2;
 	}
+	public Account() {
+
+	}
+	
 	public Account(long l, String string, String string2) {
 		 id = l;
 		 uname = string;
@@ -31,8 +35,6 @@ public class Account {
 		return uname;
 	}
 	public boolean checkPassword(String pass) {
-		System.out.println(pass);
-		System.out.println(this.pass);
 		return PasswordSecurity.encrypt(pass).equals(this.pass);
 	}
 	public void setId(Long id) {
