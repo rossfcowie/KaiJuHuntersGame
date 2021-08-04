@@ -15,8 +15,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Example;
 
+import arcane.KaijuHunters.Monsters.datastorage.Monster;
+import arcane.KaijuHunters.Monsters.datastorage.MonsterRepo;
+import arcane.KaijuHunters.Monsters.datastorage.Threat;
+import arcane.KaijuHunters.Monsters.datastorage.ThreatRepo;
+import arcane.KaijuHunters.Monsters.dto.ThreatDTO;
+import arcane.KaijuHunters.Monsters.service.ThreatService;
+
 @SpringBootTest
-public class ServiceTests {
+public class ThreatServiceTests {
 	
 	@Autowired
 	ThreatService service;
@@ -30,18 +37,32 @@ public class ServiceTests {
 	@Test
 	void createThreat(){
 		ArrayList<Integer> a  = new ArrayList<>();
-		Monster m = new Monster(1L, "shark", "shark.jpg", 100000L, 1000, 1000, 1000, 1000, 1000, 1000, 1000, a, a);
+		Monster m = new Monster(1L, "shark", "shark.jpg", 100000L, a, a);
 		Threat t = new Threat(m);
 		ThreatDTO dto =  new ThreatDTO(t);
 		when(mRepo.getById(Mockito.any())).thenReturn(m);
 		when(repo.save(Mockito.any())).thenReturn(t);
-		Assertions.assertEquals(dto,service.createThreat(1L));
+		Assertions.assertEquals(t,service.createThreat(m));
+	}
+	
+	@Test
+	void attackThreat() throws Exception{
+		ArrayList<Integer> a  = new ArrayList<>();
+		Monster m = new Monster(1L, "shark", "shark.jpg", 100000L, a, a);
+		Threat t = new Threat(m);
+		Threat t2 = new Threat(m);
+		t2.setHp(t2.getHp()-100);
+		ThreatDTO dto =  new ThreatDTO(t);
+		when(mRepo.getById(Mockito.any())).thenReturn(m);
+		when(repo.getById(Mockito.any())).thenReturn(t);
+		when(repo.save(Mockito.any())).thenReturn(t);
+		Assertions.assertEquals(dto,service.noteDamage(1L,100L,1L));
 	}
 	
 	@Test
 	void ReadThreats(){
 		ArrayList<Integer> a  = new ArrayList<>();
-		Monster m = new Monster(1L, "shark", "shark.jpg", 100000L, 1000, 1000, 1000, 1000, 1000, 1000, 1000, a, a);
+		Monster m = new Monster(1L, "shark", "shark.jpg", 100000L, a, a);
 		Threat t = new Threat(m);
 		ThreatDTO dto =  new ThreatDTO(t);
 		when(repo.findAll()).thenReturn(List.of(t));

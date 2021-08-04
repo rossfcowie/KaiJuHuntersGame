@@ -15,6 +15,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Example;
 
+import arcane.KaijuHunters.Monsters.datastorage.Monster;
+import arcane.KaijuHunters.Monsters.datastorage.MonsterRepo;
+import arcane.KaijuHunters.Monsters.service.MonsterService;
+
 @SpringBootTest
 public class MonsterServiceTests {
 	
@@ -27,7 +31,7 @@ public class MonsterServiceTests {
 	@Test
 	void createMonster(){
 		ArrayList<Integer> a  = new ArrayList<>();
-		Monster m = new Monster(1L, "shark", "shark.jpg", 100000L, 1000, 1000, 1000, 1000, 1000, 1000, 1000, a, a);
+		Monster m = new Monster(1L, "shark", "shark.jpg", 100000L, a, a);
 		when(mRepo.save(Mockito.any())).thenReturn(m);
 		Assertions.assertEquals(m,service.createMonster(m));
 	}
@@ -35,7 +39,7 @@ public class MonsterServiceTests {
 	@Test
 	void readMonsters(){
 		ArrayList<Integer> a  = new ArrayList<>();
-		Monster m = new Monster(1L, "shark", "shark.jpg", 100000L, 1000, 1000, 1000, 1000, 1000, 1000, 1000, a, a);
+		Monster m = new Monster(1L, "shark", "shark.jpg", 100000L, a, a);
 		when(mRepo.findAll()).thenReturn(List.of(m));
 		Assertions.assertEquals(List.of(m),service.readMonsters());
 	}

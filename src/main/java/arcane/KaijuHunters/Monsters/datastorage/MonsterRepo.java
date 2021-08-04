@@ -1,4 +1,4 @@
-package arcane.KaijuHunters.Monsters;
+package arcane.KaijuHunters.Monsters.datastorage;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

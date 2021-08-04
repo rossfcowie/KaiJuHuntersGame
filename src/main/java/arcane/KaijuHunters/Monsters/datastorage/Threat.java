@@ -1,10 +1,11 @@
-package arcane.KaijuHunters.Monsters;
+package arcane.KaijuHunters.Monsters.datastorage;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 @Entity
 public class Threat {
 
@@ -13,18 +14,24 @@ public class Threat {
 	Long id;
 	String name;
 	Integer level;
-	@ManyToOne
+	@ManyToOne(targetEntity = Monster.class)
 	Monster baseMonster;
 	Long hp;
 	Integer x;
 	Integer y;
 	
 	
+	public Threat() {
+		super();
+		this.x = 0;
+		this.y = 0;
+	}
+	
 	public Threat(Monster baseMonster) {
 		super();
-		this.name =  baseMonster.name.substring(0,2) + "-" + (Monster.count++) + ":" + NameGeneration.generate(baseMonster);
+		this.name =  baseMonster.name.substring(0,2) + "-" + (baseMonster.count++) + ":" + NameGeneration.generate(baseMonster);
 		this.baseMonster = baseMonster;
-		this.level = (int) (Math.floor(Math.random() * Monster.count) + 1);
+		this.level = (int) (Math.floor(Math.random() * baseMonster.count) + 1);
 		this.hp = baseMonster.hp * this.level;
 		this.x = 0;
 		this.y = 0;
@@ -39,6 +46,14 @@ public class Threat {
 		this.x = x;
 		this.y = y;
 	}
+	
+	
+	@Override
+	public String toString() {
+		return "Threat [id=" + id + ", name=" + name + ", level=" + level + ", baseMonster=" + baseMonster + ", hp="
+				+ hp + ", x=" + x + ", y=" + y + "]";
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

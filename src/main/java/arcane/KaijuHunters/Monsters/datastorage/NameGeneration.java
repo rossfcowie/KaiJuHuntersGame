@@ -1,11 +1,11 @@
-package arcane.KaijuHunters.Monsters;
+package arcane.KaijuHunters.Monsters.datastorage;
 
 public class NameGeneration {
 
 
-	public static String generate(Monster baseMonster) {
+	public static String generate(Monster baseMonster) { 
 		String x = "";
-		int highestStat = baseMonster.highestStat();
+		int highestStat = (int) (Math.random()*10+1);
 		switch (highestStat) {
 		case 1:
 			x += "Indominable ";

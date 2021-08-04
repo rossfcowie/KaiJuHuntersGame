@@ -1,10 +1,13 @@
-package arcane.KaijuHunters.Monsters;
+package arcane.KaijuHunters.Monsters.service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import arcane.KaijuHunters.Monsters.datastorage.Monster;
+import arcane.KaijuHunters.Monsters.datastorage.MonsterRepo;
 
 @Service
 public class MonsterService {
@@ -24,5 +27,6 @@ public class MonsterService {
 	public List<Monster> readMonsters() {
 		return mRepo.findAll();
 	}
+
 	
 }
