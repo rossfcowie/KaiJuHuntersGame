@@ -29,7 +29,7 @@ public class Threat {
 	
 	public Threat(Monster baseMonster) {
 		super();
-		this.name =  baseMonster.name.substring(0,2) + "-" + (baseMonster.count++) + ":" + NameGeneration.generate(baseMonster);
+		this.name = NameGeneration.classify(baseMonster) + "-" + (baseMonster.count++) + ":" + NameGeneration.generate(baseMonster);
 		this.baseMonster = baseMonster;
 		this.level = (int) (Math.floor(Math.random() * baseMonster.count) + 1);
 		this.hp = baseMonster.hp * this.level;

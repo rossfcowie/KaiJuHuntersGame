@@ -1,7 +1,5 @@
 package arcane.KaijuHunters.Monsters.datastorage;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,15 +8,15 @@ import javax.persistence.Id;
 @Entity
 public class Monster {
 	
+	String code;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long id;
 	String name;
 	String image;
 	Long hp;
-//	
-//	ArrayList<Integer> drops;
-//	ArrayList<Integer> attacks;
+	
 	int count;
 	public Monster() {
 		
@@ -27,16 +25,25 @@ public class Monster {
 	
 	
 
-	public Monster(Long id, String name, String image, Long hp, List<Integer> drops, List<Integer> attacks) {
+	public Monster(Long id, String name, String image, Long hp) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.image = image;
 		this.hp = hp;
-//		this.drops = (ArrayList<Integer>) drops;
-//		this.attacks = (ArrayList<Integer>) attacks;
+
 	}
 
+
+
+
+
+	public Monster(String name, String image, long hp) {
+		super();
+		this.name = name;
+		this.image = image;
+		this.hp = hp;
+	}
 
 
 

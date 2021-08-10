@@ -36,8 +36,7 @@ public class ThreatServiceTests {
 	
 	@Test
 	void createThreat(){
-		ArrayList<Integer> a  = new ArrayList<>();
-		Monster m = new Monster(1L, "shark", "shark.jpg", 100000L, a, a);
+		Monster m = new Monster(1L, "shark", "shark.jpg", 100000L);
 		Threat t = new Threat(m);
 		ThreatDTO dto =  new ThreatDTO(t);
 		when(mRepo.getById(Mockito.any())).thenReturn(m);
@@ -47,8 +46,7 @@ public class ThreatServiceTests {
 	
 	@Test
 	void attackThreat() throws Exception{
-		ArrayList<Integer> a  = new ArrayList<>();
-		Monster m = new Monster(1L, "shark", "shark.jpg", 100000L, a, a);
+		Monster m = new Monster(1L, "shark", "shark.jpg", 100000L);
 		Threat t = new Threat(m);
 		Threat t2 = new Threat(m);
 		t2.setHp(t2.getHp()-100);
@@ -61,8 +59,7 @@ public class ThreatServiceTests {
 	
 	@Test
 	void ReadThreats(){
-		ArrayList<Integer> a  = new ArrayList<>();
-		Monster m = new Monster(1L, "shark", "shark.jpg", 100000L, a, a);
+		Monster m = new Monster(1L, "shark", "shark.jpg", 100000L);
 		Threat t = new Threat(m);
 		ThreatDTO dto =  new ThreatDTO(t);
 		when(repo.findAll()).thenReturn(List.of(t));
