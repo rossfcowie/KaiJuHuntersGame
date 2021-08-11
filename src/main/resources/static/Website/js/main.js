@@ -19,6 +19,6 @@ function loggedIn() {
   
   function showguest() {
     let div = document.querySelector('#logarea');
-    div.innerHTML = `<a class="navbar-link" href="login.html">Log in</a> <a class="navbar-link" href="signup.html">Sign Up</a>`;
+    div.innerHTML = `<a class="navbar-link" href="/login">Log in</a> | <a class="navbar-link" href="/register">Sign Up</a>`;
   }
   

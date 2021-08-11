@@ -34,7 +34,7 @@ function sendHttpRequest(method, url) {
 
     async function SetupThreats(){
     
-      let targets = (await sendHttpRequest("GET",`http://localhost:8088/threat/all`))
+      let targets = (await sendHttpRequest("GET",`/threat/all`))
       let i= 0;
       if(targets.length>0){
         threatbox.innerHTML="";

@@ -42,12 +42,12 @@ public class AccountController {
 		return new ResponseEntity<Account>(newUser, HttpStatus.CREATED);
 	}
 
-	@GetMapping("/login")
+	@PostMapping("/login")
 	public ResponseEntity<String> loginAsUser(@Validated @RequestBody AccountDTO userDTO) {
 		if (userService.login(userDTO)) {
 			Account u = userService.read(userDTO.uname);
 			HttpHeaders headers = new HttpHeaders();
-			return new ResponseEntity<>(String.valueOf(u.uname + ":" +u.hashCode()), headers, HttpStatus.OK);
+			return new ResponseEntity<>(String.valueOf(u.uname +":"+u.hashCode() + ":" + u.getId() ), headers, HttpStatus.OK);
 			
 		}
 
@@ -58,8 +58,6 @@ public class AccountController {
 	@GetMapping("/bypass")
 	public ResponseEntity<Boolean> cookieAsUser(@RequestHeader("key") String userKey) {
 		String uname[]  = userKey.split(":");
-		System.out.println(uname[0]);
-		System.out.println(uname[1]);
 		if (userService.cookiecheck(uname[0],Integer.valueOf(uname[1]))) {
 			HttpHeaders headers = new HttpHeaders();
 			return new ResponseEntity<>(true, headers, HttpStatus.OK);

@@ -15,6 +15,14 @@ public class RouteContoller {
     public String home() {
         return "/Website/index.html";
     }
+   @GetMapping(value = "/register")
+   public String register() {
+       return "/Website/Register.html";
+   }
+   @GetMapping(value = "/login")
+   public String login() {
+       return "/Website/Login.html";
+   }
     @GetMapping(value = "/js/{file}")
     public String js(@PathVariable String file) {
         return "/Website/js/" +file;
