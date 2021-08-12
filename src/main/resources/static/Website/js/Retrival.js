@@ -1,6 +1,14 @@
 
 const threatbox = document.querySelector("#content");
-
+const threat = document.querySelector("#threatbox");
+function getUrlVars() {
+  var vars = {};
+  var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+    vars[key] = value;
+  });
+  return vars;
+}
+const threatid = getUrlVars()['id'];
 function sendHttpRequest(method, url) {
     let headers = {
       "Content-Type": "application/json",
@@ -61,3 +69,35 @@ function sendHttpRequest(method, url) {
       });
   }
   
+  async function SingleThreat(){
+    let targets = (await sendHttpRequest("GET",`/threat/all`))
+ 
+    targets.forEach(target => {
+        if(target.id==threatid){
+        let t = `
+        <div style="  position: relative;
+        text-align: center;height:700px; width: 700px;" class="container"> 
+            </br>
+            <img style="width:inherit ;position: absolute;padding: 4%;transform: translate(-50%, 20%)" src="`+target.image+`"></img>
+            <h1 style="  position: absolute;
+            left: 50%;
+            transform: translate(-50%, 0%);padding: 4%;" class="title">`+ target.name+`</h1></br>
+    
+            <h2 style="  position: absolute;
+            left: 50%;
+            transform: translate(-50%, 650%);" class="title">Level:`+target.level+`</h2> 
+            <h2 style="  position: absolute;
+            left: 50%;
+            transform: translate(-50%, 380%);" class="title">Species: `+ target.species+`</h2> 
+            </br>
+            <h2 style="  position: absolute;
+            left: 50%;
+            transform: translate(-50%, 450%);" class="title">Health : ` + target.chp + `/`+target.maxHp*target.level+`</h2> 
+            </div>
+        </img>
+                   </div>
+          </div>`
+          threat.innerHTML= t;
+ }
+    });
+}

@@ -23,6 +23,10 @@ public class RouteContoller {
    public String login() {
        return "/Website/Login.html";
    }
+   @GetMapping(value = "/threat")
+   public String threat() {
+       return "/Website/Monster.html";
+   }
     @GetMapping(value = "/js/{file}")
     public String js(@PathVariable String file) {
         return "/Website/js/" +file;
