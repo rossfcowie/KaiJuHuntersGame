@@ -5,14 +5,20 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
+import arcane.KaijuHunters.Monsters.controllers.ThreatController;
 import arcane.KaijuHunters.Monsters.datastorage.Monster;
 import arcane.KaijuHunters.Monsters.datastorage.Threat;
 import arcane.KaijuHunters.Monsters.dto.ThreatDTO;
 
 
 @Component
-public class ThreatGenerator {
+@Transactional
+public class ThreatGenerator  {
+	
+	@Autowired
+	private ThreatController controller;
 	@Autowired
 	private ThreatService service;
 	@Autowired
@@ -23,8 +29,24 @@ public class ThreatGenerator {
 		this.service = service;
 		this.mservice = mservice;
 	}
+	
+
+	@Scheduled(fixedDelay=30000)
+	public void moveThreats() {
+		for (ThreatDTO threat : service.readThreats()) {
+			System.out.println(threat);
+			int x = (threat.getX()+ (int)(Math.random()*3)-1);
+			int y = (threat.getY()+ (int)(Math.random()*3)-1);
+			 while (x<0 || y<0) {
+				x = (threat.getX()+ (int)(Math.random()*3)-2);
+				y = (threat.getY()+ (int)(Math.random()*3)-2);
+			}
+			 controller.move(threat.getId(),x,y);
+		}
+	}
+	
 	@Scheduled(fixedDelay=300)
-	public void aaa() {
+	public void createThreat() {
 		int x = 0;
 		List<Monster> m = mservice.readMonsters();
 		for (ThreatDTO threat : service.readThreats()) {

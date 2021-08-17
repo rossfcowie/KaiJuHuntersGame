@@ -50,5 +50,17 @@ public class ThreatController {
 		}
 		return new ResponseEntity<>(dto, HttpStatus.OK);
 	}
-
+	@PutMapping("/move/{tid}/{x}/{y}")
+	public ResponseEntity<ThreatDTO> move(@PathVariable Long tid, @PathVariable int x, @PathVariable int y) {
+		System.out.println("x"+x + ",y"+y);
+		ThreatDTO dto;
+		try {
+			dto = service.moveThreat(tid, x, y);
+			System.out.println(dto);
+		} catch (Exception e) {
+			System.out.println(e);
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<>(dto, HttpStatus.OK);
+	}
 }

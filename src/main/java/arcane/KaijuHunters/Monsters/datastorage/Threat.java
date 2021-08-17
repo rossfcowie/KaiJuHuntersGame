@@ -23,8 +23,8 @@ public class Threat {
 	
 	public Threat() {
 		super();
-		this.x = 0;
-		this.y = 0;
+		this.x = 15;
+		this.y = 15;
 	}
 	
 	public Threat(Monster baseMonster) {
@@ -33,8 +33,8 @@ public class Threat {
 		this.baseMonster = baseMonster;
 		this.level = (int) (Math.floor(Math.random() * baseMonster.count) + 1);
 		this.hp = baseMonster.hp * this.level;
-		this.x = 0;
-		this.y = 0;
+		this.x = 15;
+		this.y = 15;
 	}
 	
 	public Threat( String name, Monster baseMonster, Long hp, Integer x, Integer y, Integer level) {
