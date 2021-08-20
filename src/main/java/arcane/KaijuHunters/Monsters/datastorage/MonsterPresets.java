@@ -16,19 +16,19 @@ public class MonsterPresets {
 	@PostConstruct
 	public void init() {
 		
-		Monster m = new Monster("Big fish","Pictures/Boss%20Big%20Fish.png",10000L);
+		Monster m = new Monster("Big fish","Pictures/Boss%20Big%20Fish.png",100000L);
 		service.createMonster(m);
-		m = new Monster("Colossal Bat","Pictures/Colossal%20Bat.png",5000L);
+		m = new Monster("Colossal Bat","Pictures/Colossal%20Bat.png",50000L);
 		service.createMonster(m);
-		m = new Monster("Colossal Crow","Pictures/Colossal%20Dark%20Crow.png",6000L);
+		m = new Monster("Colossal Crow","Pictures/Colossal%20Dark%20Crow.png",60000L);
 		service.createMonster(m);
-		m = new Monster("Colossal Scorpion","Pictures/Colossal%20Scorpion.png",8000L);
+		m = new Monster("Colossal Scorpion","Pictures/Colossal%20Scorpion.png",80000L);
 		service.createMonster(m);
-		m = new Monster("Colossal Snake","Pictures/Colossal%20Snake.png",7000L);
+		m = new Monster("Colossal Snake","Pictures/Colossal%20Snake.png",70000L);
 		service.createMonster(m);
-		m = new Monster("Colossal Centipede","Pictures/Insects%20Giant%20Bug%20Centipede.png",12000L);
+		m = new Monster("Colossal Centipede","Pictures/Insects%20Giant%20Bug%20Centipede.png",120000L);
 		service.createMonster(m);
-		m = new Monster("Colossal Beetle","Pictures/Insects%20Giant%20Bug%20Hercules.png",20000L);
+		m = new Monster("Colossal Beetle","Pictures/Insects%20Giant%20Bug%20Hercules.png",200000L);
 		service.createMonster(m);
 		
 	}
