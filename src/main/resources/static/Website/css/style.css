@@ -62,7 +62,7 @@ body {
   margin-top: 4%;
 }
 
-.container {
+.containerpad {
   text-align: center;
   position: relative;
   background-color: rgba(255, 255, 255, 0.3);
@@ -116,7 +116,7 @@ body {
   box-sizing: border-box;
 }
 
-.container .title {
+.containerpad .title {
   text-align: center;
   font-size: 3.8em;
   color: rgb(255, 255, 255);
@@ -266,4 +266,12 @@ body {
 
 .fadeIn{
   left: 80%;
+}
+
+#leaderboard {
+  background-color: aliceblue;
+  border-color: aqua;
+  border: 1px;;
+  padding: 1%;
+  font-size: 36px;
 }

@@ -2,12 +2,14 @@ package arcane.KaijuHunters.records;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import arcane.KaijuHunters.Monsters.datastorage.Threat;
 import arcane.KaijuHunters.Monsters.datastorage.ThreatRepo;
+import arcane.KaijuHunters.Monsters.dto.ThreatDTO;
 import arcane.KaijuHunters.account.Account;
 import arcane.KaijuHunters.account.AccountRepo;
 
@@ -18,6 +20,7 @@ public class RecordService {
 	RecordRepo repo;
 	ThreatRepo trepo;
 	AccountRepo arepo;
+	
 	@Autowired
 	public RecordService(RecordRepo repo,ThreatRepo trepo,AccountRepo arepo) {
 		this.repo=repo;
@@ -45,6 +48,20 @@ public class RecordService {
     	rs.forEach(record->dtos.add(map(record)));
 		return dtos;
 	}
+	public leaderboardDTO createLeaderboard(Long tid) {
+		Optional<Threat> t=trepo.findById(tid);
+			ThreatDTO tdto = new ThreatDTO(t.get());
+			List<Record> rs = repo.findByT(tid);
+			ArrayList<RecordDTO> dtos = new ArrayList<>();
+	    	rs.forEach(record->dtos.add(map(record)));
+			leaderboardDTO l=new leaderboardDTO(dtos,tdto);
+			
+			return l;
+
+		
+		
+	}
+	
 	private RecordDTO map(Record record) {
 		return new RecordDTO(record);
 	}

@@ -38,7 +38,11 @@ public class ThreatController {
 		System.out.println(threats);
 		return new ResponseEntity<>(threats, HttpStatus.OK);
 	}
-
+	@GetMapping("/read/{tid}")
+	public ResponseEntity<ThreatDTO> readone(@PathVariable Long tid) {
+		ThreatDTO threat = service.readThreat(tid);
+		return new ResponseEntity<>(threat, HttpStatus.OK);
+	}
 	@PutMapping("/atk/{tid}/{aid}/{dmg}")
 	public ResponseEntity<ThreatDTO> attack(@PathVariable Long tid, @PathVariable Long aid, @PathVariable Long dmg) {
 		ThreatDTO dto;
