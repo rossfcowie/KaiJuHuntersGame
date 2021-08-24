@@ -1,5 +1,6 @@
 package arcane.KaijuHunters.Monsters.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,18 +12,21 @@ import arcane.KaijuHunters.Monsters.controllers.ThreatController;
 import arcane.KaijuHunters.Monsters.datastorage.Monster;
 import arcane.KaijuHunters.Monsters.datastorage.Threat;
 import arcane.KaijuHunters.Monsters.dto.ThreatDTO;
+import arcane.KaijuHunters.records.RecordService;
 
 
 @Component
 @Transactional
 public class ThreatGenerator  {
-	
+	static ArrayList<Long> dead = new ArrayList<Long>();
 	@Autowired
 	private ThreatController controller;
 	@Autowired
 	private ThreatService service;
 	@Autowired
 	private MonsterService mservice;
+	@Autowired
+	private RecordService rservice;
 	@Autowired
 	public ThreatGenerator(MonsterService mservice,ThreatService service) {
 		super();
@@ -49,14 +53,19 @@ public class ThreatGenerator  {
 	public void createThreat() {
 		int x = 0;
 		List<Monster> m = mservice.readMonsters();
-		for (ThreatDTO threat : service.readThreats()) {
+		List<ThreatDTO> t = service.readThreats();
+		t.removeIf(n -> (dead.contains(n.getId())));
+		for (ThreatDTO threat : t) {
 			if(threat.getChp()>0) {
 				x++;
+			}else {
+				dead.add(threat.getId());
+				rservice.allowClaims(threat.getId());
 			}
 		}
 		
 		if(x>7) {
-			System.out.println("Capacity reached");
+			System.out.println(dead);
 		}else {
 			if(m.size()>0) {
 				

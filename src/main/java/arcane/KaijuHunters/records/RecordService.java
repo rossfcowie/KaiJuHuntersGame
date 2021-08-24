@@ -1,6 +1,7 @@
 package arcane.KaijuHunters.records;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,9 +58,60 @@ public class RecordService {
 			leaderboardDTO l=new leaderboardDTO(dtos,tdto);
 			
 			return l;
-
+	}
+	public ArrayList<RewardDTO> getAllRewards(Long aid){
+		ArrayList<Record> records = (ArrayList<Record>) repo.findByA(aid);
+		records.removeIf(n -> (n.getClaimed()));
+		ArrayList<RewardDTO> rewards = new ArrayList<>();
+		records.forEach(r -> {
+			rewards.add(getRewards(r.threat, r.a.getId()));
+			r.setClaimed(true);
+			
+			
+		});
+		repo.saveAll(records);
+		return rewards;
+	}
+	public void allowClaims(Long t) {
+		System.out.println("Allowing claims on:" + t);
+		ArrayList<Record> r = (ArrayList<Record>) repo.findByT(t);
+		r.forEach(i->{i.setClaimed(false);});
+		repo.saveAll(r);
+	}
+	private RewardDTO getRewards(Threat t,Long aid) {
+		int rewardCount= 0;
+		Record r = repo.findByAT(aid, t.getId()).get();
+		switch (r.getCount()) {
+		case 5:
+			rewardCount+=5;
+		case 3:
+			rewardCount+=5;
+		case 2:
+			rewardCount+=3;
+		case 1:
+			rewardCount+=2;
+			
+			break;
+		default:
+			break;
+		}
+		if(r.getDmg()>10000) {
+			rewardCount+=3;
+			Long i = r.getDmg()-10000;
+			i= (long) Math.floor(rewardCount/10000);
+			rewardCount+=i;
+		}
+		Double percent = (double) (t.getBaseMonster().getHp()/ r.getDmg());
+		if(percent>=1) {
+			rewardCount+=10;
+			if(percent>=10) {
+				rewardCount+=100;
+				percent-=10;
+				rewardCount+= Math.floor(percent/2);
+			}
+		}
 		
-		
+		return new RewardDTO(aid, t, rewardCount);
 	}
 	
 	private RecordDTO map(Record record) {

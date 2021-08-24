@@ -54,7 +54,7 @@ public class ThreatService {
 		}
 	}
 	public List<ThreatDTO> readThreats() {
-    	List<Threat> threats = repo.findAlive();
+    	List<Threat> threats = repo.findAll();
     	List<ThreatDTO> dtos = new ArrayList<>();
        	threats.forEach(t->dtos.add(map(t)));
     	return dtos;

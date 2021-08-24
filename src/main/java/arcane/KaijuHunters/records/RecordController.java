@@ -2,6 +2,7 @@ package arcane.KaijuHunters.records;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,5 +50,17 @@ public class RecordController {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
 	}
-	
+	@GetMapping("/rewards/{aid}")
+	public ResponseEntity<ArrayList<RewardDTO>> getRewards(@PathVariable Long aid){
+		ArrayList<RewardDTO> rewards = null;
+
+		try {
+			rewards = service.getAllRewards(aid);
+			return new ResponseEntity<ArrayList<RewardDTO>>(rewards, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		}
+		
+		
+	}
 }
