@@ -134,8 +134,7 @@ public class ThreatDTO {
 	}
 	
 	public ThreatDTO(Long id,Long bid,  String name, Integer level, Long chp, Integer x, Integer y, String species, String image,
-			Long maxHp, Integer mp, Integer atk, Integer def, Integer mat, Integer mdf, Integer luk, Integer agi,
-			ArrayList<Integer> drops, ArrayList<Integer> attacks) {
+			Long maxHp) {
 		super();
 		this.id = id;
 		this.bid = bid;
@@ -243,24 +242,14 @@ public class ThreatDTO {
 		return true;
 	}
 
-
 	@Override
 	public String toString() {
 		return "ThreatDTO [id=" + id + ", name=" + name + ", level=" + level + ", chp=" + chp + ", x=" + x + ", y=" + y
-				+ ", species=" + species + ", image=" + image + ", MaxHp=" + MaxHp +  "]";
+				+ ", species=" + species + ", bid=" + bid + ", image=" + image + ", MaxHp=" + MaxHp + "]";
 	}
 
 
 
-
-
-//	@Override
-//	public String toString() {
-//		return "ThreatDTO [id=" + id + ", name=" + name + ", level=" + level + ", chp=" + chp + ", x=" + x + ", y=" + y
-//				+ ", species=" + species + ", image=" + image + ", MaxHp=" + MaxHp + ", mp=" + mp + ", atk=" + atk
-//				+ ", def=" + def + ", mat=" + mat + ", mdf=" + mdf + ", luk=" + luk + ", agi=" + agi + ", drops="
-//				+ drops + ", attacks=" + attacks + "]";
-//	}
 
 	
 }

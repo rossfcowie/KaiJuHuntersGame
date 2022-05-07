@@ -33,6 +33,7 @@ public class RecordService {
 		try {
 			r= repo.findByAT(aid,tid).get();
 			r.setDmg(r.getDmg()+dmg);
+			r.setCount(r.getCount()+1);
 		} catch (Exception e) {
 			r=createRecord(tid,dmg,aid);
 		}

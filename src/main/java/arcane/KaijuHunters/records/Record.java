@@ -109,11 +109,18 @@ public class Record {
 		this.threat = threat;
 		this.a = a;
 		this.dmg = dmg;
-		this.count=0;
+		this.count=1;
 	}
 	
 	public Record() {
 		super();
 
 	}
+	@Override
+	public String toString() {
+		return "Record [id=" + id + ", threat=" + threat + ", a=" + a + ", dmg=" + dmg + ", count=" + count
+				+ ", claimed=" + claimed + "]";
+	}
+	
+	
 }

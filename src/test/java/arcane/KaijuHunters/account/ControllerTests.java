@@ -49,7 +49,7 @@ public class ControllerTests {
 	void loginTest() throws NoSuchAlgorithmException, InvalidKeySpecException {
 		when(service.login(Mockito.any(AccountDTO.class))).thenReturn(true);
 		when(service.read(Mockito.any())).thenReturn(acc);
-		ResponseEntity<String> response = new ResponseEntity<>("gura:50219477", HttpStatus.OK);
+		ResponseEntity<String> response = new ResponseEntity<>("gura:50219477:1", HttpStatus.OK);
 		assertThat(response).isEqualTo(controller.loginAsUser(dto));
 		verify(service, times(1)).login(Mockito.any(AccountDTO.class));
 	}

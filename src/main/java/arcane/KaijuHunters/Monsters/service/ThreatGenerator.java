@@ -37,7 +37,9 @@ public class ThreatGenerator  {
 
 	@Scheduled(fixedDelay=30000)
 	public void moveThreats() {
-		for (ThreatDTO threat : service.readThreats()) {
+		List<ThreatDTO> t = service.readThreats();
+		t.removeIf(n -> (dead.contains(n.getId())));
+		for (ThreatDTO threat : t) {
 			System.out.println(threat);
 			int x = (threat.getX()+ (int)(Math.random()*3)-1);
 			int y = (threat.getY()+ (int)(Math.random()*3)-1);
@@ -65,13 +67,12 @@ public class ThreatGenerator  {
 		}
 		
 		if(x>7) {
-			System.out.println(dead);
+			
 		}else {
 			if(m.size()>0) {
-				
-				System.out.println();
-				mservice.mRepo.save(service.createThreat(m.get((int) (Math.random() *m.size()))).getBaseMonster());
+				Monster m2 = mservice.mRepo.save(service.createThreat(m.get((int) (Math.random() *m.size()))).getBaseMonster());
 				System.out.println("created monster");
+				System.out.println(m2);
 			}else {
 				System.out.println("no data avaliable");
 			}
