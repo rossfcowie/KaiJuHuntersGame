@@ -14,6 +14,7 @@ public class Threat {
 	Long id;
 	String name;
 	Integer level;
+	//State weaknesses;
 	@ManyToOne(targetEntity = Monster.class)
 	Monster baseMonster;
 	Long hp;

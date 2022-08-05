@@ -45,7 +45,7 @@ Window_Base.prototype.drawActorClass = function(actor, x, y, width) {
 width = width || 168;
 this.resetTextColor();
 if(actor.currentClass().meta.color !== "undefined"){
-var element = parseInt(actor.currentClass().meta.color);
+var element = parseInt(actor.currentClass().meta.color) || 0 ;
 console.log("Class Color" + element);}
 this.changeTextColor(this.textColor(element));
 this.drawText(actor.currentClass().name +" | "+ actor.nickname(), x, y, width);
