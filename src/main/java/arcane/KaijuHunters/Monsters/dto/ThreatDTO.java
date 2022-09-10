@@ -14,6 +14,7 @@ public class ThreatDTO {
 	private Integer x;
 	private Integer y;
 	private String species;
+	private Long bid;
 	private String image;
 	private Long MaxHp;
 //	ArrayList<Integer> drops;
@@ -24,6 +25,7 @@ public class ThreatDTO {
 	
 	public void loadMonster(Monster baseMonster) {
 		this.species = baseMonster.getName();
+		this.bid= baseMonster.getId();
 		this.image = baseMonster.getImage();
 		this.MaxHp = baseMonster.getHp();
 	}
@@ -66,6 +68,14 @@ public class ThreatDTO {
 
 
 
+	public Long getBid() {
+		return bid;
+	}
+
+	public void setBid(Long bid) {
+		this.bid = bid;
+	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -107,6 +117,7 @@ public class ThreatDTO {
 	public ThreatDTO(Threat t) {
 		super();
 		this.id = t.getId();
+		this.bid = t.getBaseMonster().getId();
 		this.name = t.getName();
 		this.level = t.getLevel();
 		this.chp = t.getHp();
@@ -122,11 +133,11 @@ public class ThreatDTO {
 		super();
 	}
 	
-	public ThreatDTO(Long id, String name, Integer level, Long chp, Integer x, Integer y, String species, String image,
-			Long maxHp, Integer mp, Integer atk, Integer def, Integer mat, Integer mdf, Integer luk, Integer agi,
-			ArrayList<Integer> drops, ArrayList<Integer> attacks) {
+	public ThreatDTO(Long id,Long bid,  String name, Integer level, Long chp, Integer x, Integer y, String species, String image,
+			Long maxHp) {
 		super();
 		this.id = id;
+		this.bid = bid;
 		this.name = name;
 		this.level = level;
 		this.chp = chp;
@@ -231,24 +242,14 @@ public class ThreatDTO {
 		return true;
 	}
 
-
 	@Override
 	public String toString() {
 		return "ThreatDTO [id=" + id + ", name=" + name + ", level=" + level + ", chp=" + chp + ", x=" + x + ", y=" + y
-				+ ", species=" + species + ", image=" + image + ", MaxHp=" + MaxHp +  "]";
+				+ ", species=" + species + ", bid=" + bid + ", image=" + image + ", MaxHp=" + MaxHp + "]";
 	}
 
 
 
-
-
-//	@Override
-//	public String toString() {
-//		return "ThreatDTO [id=" + id + ", name=" + name + ", level=" + level + ", chp=" + chp + ", x=" + x + ", y=" + y
-//				+ ", species=" + species + ", image=" + image + ", MaxHp=" + MaxHp + ", mp=" + mp + ", atk=" + atk
-//				+ ", def=" + def + ", mat=" + mat + ", mdf=" + mdf + ", luk=" + luk + ", agi=" + agi + ", drops="
-//				+ drops + ", attacks=" + attacks + "]";
-//	}
 
 	
 }

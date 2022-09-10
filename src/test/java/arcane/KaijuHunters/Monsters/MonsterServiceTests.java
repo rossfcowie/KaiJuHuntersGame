@@ -31,7 +31,7 @@ public class MonsterServiceTests {
 	@Test
 	void createMonster(){
 		ArrayList<Integer> a  = new ArrayList<>();
-		Monster m = new Monster(1L, "shark", "shark.jpg", 100000L, a, a);
+		Monster m = new Monster(1L, "shark", "shark.jpg", 100000L);
 		when(mRepo.save(Mockito.any())).thenReturn(m);
 		Assertions.assertEquals(m,service.createMonster(m));
 	}
@@ -39,7 +39,7 @@ public class MonsterServiceTests {
 	@Test
 	void readMonsters(){
 		ArrayList<Integer> a  = new ArrayList<>();
-		Monster m = new Monster(1L, "shark", "shark.jpg", 100000L, a, a);
+		Monster m = new Monster(1L, "shark", "shark.jpg", 100000L);
 		when(mRepo.findAll()).thenReturn(List.of(m));
 		Assertions.assertEquals(List.of(m),service.readMonsters());
 	}

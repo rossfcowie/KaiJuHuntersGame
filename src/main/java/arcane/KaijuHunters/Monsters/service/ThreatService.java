@@ -2,6 +2,7 @@ package arcane.KaijuHunters.Monsters.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +36,14 @@ public class ThreatService {
 		return repo.save(t);
 	}
 	
+	public ThreatDTO moveThreat(Long threatID, int x, int y) {
+		Threat t = repo.getById(threatID);
+		t.setX(x);
+		t.setY(y);
+		return map(repo.save(t));
+		
+	}
+	
 	public ThreatDTO noteDamage(Long threatID, Long damage, Long accountID) throws Exception {
 		Threat t = repo.getById(threatID);
 		if(t.getHp()>0) {
@@ -50,5 +59,10 @@ public class ThreatService {
        	threats.forEach(t->dtos.add(map(t)));
     	return dtos;
 		
+	}
+
+	public ThreatDTO readThreat(Long tid) {
+		Threat t =repo.getById(tid);
+		return map(t);
 	}
 }

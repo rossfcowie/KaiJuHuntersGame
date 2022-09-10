@@ -38,7 +38,11 @@ public class ThreatController {
 		System.out.println(threats);
 		return new ResponseEntity<>(threats, HttpStatus.OK);
 	}
-
+	@GetMapping("/read/{tid}")
+	public ResponseEntity<ThreatDTO> readone(@PathVariable Long tid) {
+		ThreatDTO threat = service.readThreat(tid);
+		return new ResponseEntity<>(threat, HttpStatus.OK);
+	}
 	@PutMapping("/atk/{tid}/{aid}/{dmg}")
 	public ResponseEntity<ThreatDTO> attack(@PathVariable Long tid, @PathVariable Long aid, @PathVariable Long dmg) {
 		ThreatDTO dto;
@@ -50,5 +54,17 @@ public class ThreatController {
 		}
 		return new ResponseEntity<>(dto, HttpStatus.OK);
 	}
-
+	@PutMapping("/move/{tid}/{x}/{y}")
+	public ResponseEntity<ThreatDTO> move(@PathVariable Long tid, @PathVariable int x, @PathVariable int y) {
+		System.out.println("x"+x + ",y"+y);
+		ThreatDTO dto;
+		try {
+			dto = service.moveThreat(tid, x, y);
+			System.out.println(dto);
+		} catch (Exception e) {
+			System.out.println(e);
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<>(dto, HttpStatus.OK);
+	}
 }

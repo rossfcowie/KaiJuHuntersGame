@@ -14,6 +14,7 @@ public class Threat {
 	Long id;
 	String name;
 	Integer level;
+	//State weaknesses;
 	@ManyToOne(targetEntity = Monster.class)
 	Monster baseMonster;
 	Long hp;
@@ -23,18 +24,18 @@ public class Threat {
 	
 	public Threat() {
 		super();
-		this.x = 0;
-		this.y = 0;
+		this.x = 15;
+		this.y = 15;
 	}
 	
 	public Threat(Monster baseMonster) {
 		super();
-		this.name =  baseMonster.name.substring(0,2) + "-" + (baseMonster.count++) + ":" + NameGeneration.generate(baseMonster);
+		this.name = NameGeneration.classify(baseMonster) + "-" + (baseMonster.count++) + ":" + NameGeneration.generate(baseMonster);
 		this.baseMonster = baseMonster;
 		this.level = (int) (Math.floor(Math.random() * baseMonster.count) + 1);
 		this.hp = baseMonster.hp * this.level;
-		this.x = 0;
-		this.y = 0;
+		this.x = 15;
+		this.y = 15;
 	}
 	
 	public Threat( String name, Monster baseMonster, Long hp, Integer x, Integer y, Integer level) {

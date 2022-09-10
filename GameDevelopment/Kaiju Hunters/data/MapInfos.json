@@ -1,0 +1,18 @@
+[
+null,
+{"id":1,"expanded":true,"name":"World map","order":6,"parentId":0,"scrollX":1216.5,"scrollY":814.5},
+{"id":2,"expanded":true,"name":"Base","order":2,"parentId":5,"scrollX":1318.6666666666667,"scrollY":808},
+{"id":3,"expanded":true,"name":"Base interior","order":3,"parentId":2,"scrollX":2293.5,"scrollY":808.5},
+{"id":4,"expanded":false,"name":"Base interior","order":4,"parentId":3,"scrollX":2863.5,"scrollY":826.5},
+{"id":5,"expanded":true,"name":"World map","order":1,"parentId":0,"scrollX":2917.3333333333335,"scrollY":1322.6666666666667},
+{"id":6,"expanded":true,"name":"Testing area","order":5,"parentId":2,"scrollX":1081.3333333333333,"scrollY":750.6666666666666},
+{"id":7,"expanded":false,"name":"Sick day","order":9,"parentId":0,"scrollX":2728,"scrollY":652},
+{"id":8,"expanded":true,"name":"Base interior Scene","order":10,"parentId":0,"scrollX":2101.5,"scrollY":826.5},
+{"id":9,"expanded":true,"name":"Livemode","order":11,"parentId":0,"scrollX":816,"scrollY":722},
+{"id":10,"expanded":true,"name":"World map","order":7,"parentId":1,"scrollX":1081.3333333333333,"scrollY":808},
+{"id":11,"expanded":false,"name":"MAP011","order":8,"parentId":10,"scrollX":1050.6666666666667,"scrollY":641.3333333333334},
+{"id":12,"expanded":true,"name":"Base","order":12,"parentId":9,"scrollX":1216.5,"scrollY":814.5},
+{"id":13,"expanded":true,"name":"Base interior","order":13,"parentId":12,"scrollX":2490,"scrollY":709.5},
+{"id":14,"expanded":true,"name":"Base interior","order":14,"parentId":13,"scrollX":2293.5,"scrollY":826.5},
+{"id":15,"expanded":false,"name":"Base interior","order":15,"parentId":14,"scrollX":1786.909090909091,"scrollY":1049.4545454545455}
+]

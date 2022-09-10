@@ -20,6 +20,23 @@ public class Record {
 	@ManyToOne
 	Account a;
 	Long dmg;
+	Integer count;
+	Boolean claimed = true;
+	
+	
+	
+	public Boolean getClaimed() {
+		return claimed;
+	}
+	public void setClaimed(Boolean claimed) {
+		this.claimed = claimed;
+	}
+	public Integer getCount() {
+		return count;
+	}
+	public void setCount(Integer count) {
+		this.count = count;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -52,6 +69,8 @@ public class Record {
 		result = prime * result + ((dmg == null) ? 0 : dmg.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((threat == null) ? 0 : threat.hashCode());
+		result = prime * result + ((count == null) ? 0 : count.hashCode());
+		
 		return result;
 	}
 	@Override
@@ -90,10 +109,18 @@ public class Record {
 		this.threat = threat;
 		this.a = a;
 		this.dmg = dmg;
+		this.count=1;
 	}
 	
 	public Record() {
 		super();
 
 	}
+	@Override
+	public String toString() {
+		return "Record [id=" + id + ", threat=" + threat + ", a=" + a + ", dmg=" + dmg + ", count=" + count
+				+ ", claimed=" + claimed + "]";
+	}
+	
+	
 }

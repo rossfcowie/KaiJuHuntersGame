@@ -4,13 +4,9 @@ public class PasswordSecurity {
 
 	
 	public static String encrypt(String input) {
-		System.out.println(input);
 		Long outint = hash(input);
-		System.out.println(outint);
 		outint = (long) Math.pow(outint/31, (outint %10));
-		System.out.println(outint);
 		outint = (outint * 31 * 29);
-		System.out.println(outint);
 		try {
 
 			outint = (long) (outint/ Math.pow(10,(outint %10)));
@@ -20,7 +16,6 @@ public class PasswordSecurity {
 		} catch (Exception e) {
 			outint = (long) outint/10;
 		}
-		System.out.println(outint);
 		return outint.toString();
 	}
 	
